@@ -1,14 +1,14 @@
-// const BODY = document.querySelector('body');
+const BODY = document.querySelector('body');
 
 // /**
 //  * detecting device
 //  */
-// if (/iPhone/i.test(navigator.userAgent)) {
-//   console.log('✅');
-// } else {
-//   BODY.classList.add('hidden');
-//   console.log('❌');
-// }
+if (/iPhone/i.test(navigator.userAgent)) {
+  console.log('✅');
+} else {
+  BODY.classList.add('hidden');
+  console.log('❌');
+}
 
 
 /**
@@ -17,16 +17,15 @@
 const MAIN = document.querySelector('main');
 const VPN_SCREEN = document.getElementById('need_vpn_screen_sec');
 MAIN.classList.add('hidden');
-fetch('http://ip-api.com/json/?fields=61439')
-.then((res) => res.json())
+fetch('https://ipinfo.io/json')
 .then((res) => {
-  if (res.country === "Iran") {
-    VPN_SCREEN.classList.remove('hidden');
-    VPN_SCREEN.classList.add('flex');
-  } else {
-    VPN_SCREEN.classList.add('hidden');
-    MAIN.classList.remove('hidden');
-  }
+  VPN_SCREEN.classList.add('hidden');
+  MAIN.classList.remove('hidden');
+})
+.catch((error) => {
+  VPN_SCREEN.classList.remove('hidden');
+  VPN_SCREEN.classList.add('flex');
+  console.error('An error occurred with ipinfo:', error);
 });
 
 
