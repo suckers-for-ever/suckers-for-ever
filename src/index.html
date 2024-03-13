@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="touch-none">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="./output.css" rel="stylesheet">
+    <script src="./Hammer.main.js"></script>
+    <!-- mongoDB database -->
+    <script src="https://unpkg.com/realm-web/dist/bundle.iife.js"></script>
+    <!-- alertify js -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <title>Golden Age Gallery</title>
+</head>
+<body class="text-white bg-teal-950 overflow-hidden touch-none select-none">
+
+    <!-- background audio -->
+    <audio id="audio" src="../public/song/Bank Account - 21 Savage.mp3" loop></audio>
+
+    <!-- need vpn screen -->
+    <div id="need_vpn_screen_sec" class="bg-red-700 h-svh flex-col justify-center items-center fixed w-screen z-50 hidden">
+        <h1 id="vpn_need_text" class="text-4xl">connect to a VPN</h1>
+        <h3 id="vpn_need_text_small">then refresh the page</h3>
+    </div>
+
+    <main class="flex flex-col items-center justify-center h-svh bg-teal-950">
+
+        <!-- audio play - pause btn -->
+        <div class="fixed top-0 left-0 z-0">
+            <img id="play_pause" class="scale-75" src="../public/img/pause.png" onclick="togglePlayPause();" alt="play and pause"/>
+        </div>
+        
+        <!-- img section -->
+        <section id="img-section" class="flex justify-center items-center w-[95%]">
+            <img id="current_img" class="rounded-3xl" onclick="nextImg(event);" src="" alt="RELOAD"/>
+        </section>
+
+        <!-- sppiner for img section await -->
+        <p id="await_text" class="animate-pulse text-yellow-300 text-4xl text-center">wait while data is being loaded!</p>
+
+        <!-- index of img -->
+        <p id="index_of_img_section" class="text-xs mt-1 text-slate-500">
+            <span id="current_index"></span>
+            <span>/</span>
+            <span id="whole_index"></span>
+        </p>
+
+        <!-- 3 dot btn -->
+        <div id="3-dot-con" class="fixed flex items-center justify-center bottom-3 right-4 py-5">
+            <div class="three_dots"></div>
+            <div class="three_dots"></div>
+            <div class="three_dots"></div>
+        </div>
+    
+        <!-- menu overlay | hidden at first -->
+        <div id="menu_overlay" class="bg-yellow-500 bg-opacity-70 absolute bottom-12 right-3 p-5 rounded-xl transition-opacity delay-300 will-change-auto" style="display: none; opacity: 0;">
+            <label class="block mb-2 text-sm font-medium text-teal-800" for="file_input">upload img <span>(use the small version!)</span> </label>
+            <input id="file_input" accept="image/*" class="block text-sm rounded-lg bg-teal-950 px-3 py-[0.32rem] file:-mx-3 file:-my-[0.32rem] file:me-3 file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:bg-transparent file:px-3 file:py-[0.32rem] file:text-white" type="file">
+            <button id="btn_submit" class="mt-2 bg-teal-950 rounded-lg p-1 text-sm transition-transform ease-linear" onclick="uploadImage();">🦄🦄🦄🦄</button>
+            <span id="done_state_status_text" class="text-green-900 font-extrabold float-end mt-2 hidden">Done!</span>
+            <span id="uploading_state_status_text" class="text-purple-700 font-extrabold float-end mt-2 animate-pulse hidden">uploading...</span>
+            <span id="error_state_status_text" class="text-red-700 font-extrabold float-end mt-2 hidden">Error!</span>
+        </div>
+
+    </main>
+
+    <script async src="https://imgbb.com/upload.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
