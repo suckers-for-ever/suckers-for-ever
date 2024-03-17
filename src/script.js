@@ -3,30 +3,30 @@ const BODY = document.querySelector('body');
 // /**
 //  * detecting device
 //  */
-if (/iPhone/i.test(navigator.userAgent)) {
-  console.log('✅');
-} else {
-  BODY.classList.add('hidden');
-  console.log('❌');
-}
+// if (/iPhone/i.test(navigator.userAgent)) {
+//   console.log('✅');
+// } else {
+//   BODY.classList.add('hidden');
+//   console.log('❌');
+// }
 
 
 /**
  * to check the country of the user
  */
-const MAIN = document.querySelector('main');
-const VPN_SCREEN = document.getElementById('need_vpn_screen_sec');
-MAIN.classList.add('hidden');
-fetch('https://ipinfo.io/json')
-.then((res) => {
-  VPN_SCREEN.classList.add('hidden');
-  MAIN.classList.remove('hidden');
-})
-.catch((error) => {
-  VPN_SCREEN.classList.remove('hidden');
-  VPN_SCREEN.classList.add('flex');
-  console.error('An error occurred with ipinfo:', error);
-});
+// const MAIN = document.querySelector('main');
+// const VPN_SCREEN = document.getElementById('need_vpn_screen_sec');
+// MAIN.classList.add('hidden');
+// fetch('https://ipinfo.io/json')
+// .then((res) => {
+//   VPN_SCREEN.classList.add('hidden');
+//   MAIN.classList.remove('hidden');
+// })
+// .catch((error) => {
+//   VPN_SCREEN.classList.remove('hidden');
+//   VPN_SCREEN.classList.add('flex');
+//   console.error('An error occurred with ipinfo:', error);
+// });
 
 
 /**
