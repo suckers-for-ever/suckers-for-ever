@@ -3,30 +3,30 @@ const BODY = document.querySelector('body');
 // /**
 //  * detecting device
 //  */
-// if (/iPhone/i.test(navigator.userAgent)) {
-//   console.log('✅');
-// } else {
-//   BODY.classList.add('hidden');
-//   console.log('❌');
-// }
+if (/iPhone/i.test(navigator.userAgent)) {
+  console.log('✅');
+} else {
+  BODY.classList.add('hidden');
+  console.log('❌');
+}
 
 
 /**
  * to check the country of the user
  */
-// const MAIN = document.querySelector('main');
-// const VPN_SCREEN = document.getElementById('need_vpn_screen_sec');
-// MAIN.classList.add('hidden');
-// fetch('https://ipinfo.io/json')
-// .then((res) => {
-//   VPN_SCREEN.classList.add('hidden');
-//   MAIN.classList.remove('hidden');
-// })
-// .catch((error) => {
-//   VPN_SCREEN.classList.remove('hidden');
-//   VPN_SCREEN.classList.add('flex');
-//   console.error('An error occurred with ipinfo:', error);
-// });
+const MAIN = document.querySelector('main');
+const VPN_SCREEN = document.getElementById('need_vpn_screen_sec');
+MAIN.classList.add('hidden');
+fetch('https://ipinfo.io/json')
+.then((res) => {
+  VPN_SCREEN.classList.add('hidden');
+  MAIN.classList.remove('hidden');
+})
+.catch((error) => {
+  VPN_SCREEN.classList.remove('hidden');
+  VPN_SCREEN.classList.add('flex');
+  console.error('An error occurred with ipinfo:', error);
+});
 
 
 /**
@@ -112,6 +112,7 @@ function logInAndInsertDocument(email, password, databaseName, collectionName, d
     .finally(() => logOut());
 }
 
+let currentIndex = 0;
 
 // to upload an image into the host service
 const BTN_SUBMIT = document.getElementById('btn_submit');
@@ -148,6 +149,7 @@ function uploadImage() {
     })
     .then(() => {
         // to update the index of the pics at the bottom of the imgs
+        currentIndex = 0;
         index_of_pics();
         
         UPLOAD_STATE_TEXT.classList.add('hidden');
@@ -173,6 +175,7 @@ function uploadImage() {
           ERROR_STATE_TEXT.classList.add('hidden');
         }, 4000);
         alertify.error('Error uploading the img. code: 4920');
+        BTN_SUBMIT.disabled = false;
     });
   } else {
         alertify.error('select an image mother fucker!');
@@ -208,7 +211,6 @@ window.onload = () => {
 /**
  * to go to the next or previous img
  */
-let currentIndex = 0;
 function nextImg(event) {
     const clickX = event.clientX;
     const imgWidth = CURRENT_IMG.offsetWidth;
